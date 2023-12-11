@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	float per,om,tm;
+	cout << endl << "Enter total number" << endl;
+	cin >> tm;
+	cout << endl << "Enter obtained  number" << endl;
+	cin >> om;
+	per = (om * 100)/tm;
+	cout << per<<"%";
+	int percent = per;
+	switch (percent)
+	{
+		case 90 ... 100:
+			cout << endl <<"A GRADE" << endl;
+			break;
+		case 80 ... 89:
+			cout << endl << "B GRADE" << endl;
+			break;
+
+		case 70 ... 79:
+			cout << endl << "C GRADE" << endl;
+			break;
+
+		case 60 ... 69:
+			cout << endl << "D GRADE" << endl;
+			break;
+
+		case 40 ... 59:
+			cout << endl << "E GRADE" << endl;
+			break;
+
+			default:
+				cout <<endl<< "FAIL!!!";
+			break;
+	}
+	
+	
+	
+	return 0;
+}
