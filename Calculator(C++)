@@ -1,0 +1,41 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int a, b;
+	char op;
+	cout << "Enter the function you want to use like(+,-,/,*,%)"<<endl;
+	cin >> op;
+	cout << endl << "Enter first number" << endl;
+	cin >> a;
+	cout << endl << "Enter second number" << endl;
+	cin >> b;
+	switch (op)
+	{
+		case '+':
+			cout << endl << a << op << b << "=" << a + b << endl;
+			break;
+
+		case '*':
+			cout << endl << a << op << b << "=" << a * b << endl;
+			break;
+
+		case '-':
+			cout << endl << a << op << b << "=" << a - b << endl;
+			break;
+
+		case '/':
+			cout << endl << a << op << b << "=" << a / b << endl;
+			break;
+		case '%':
+			cout << endl << a << op << b << "=" << a % b << endl;
+			break;
+		default:
+			cout << "Invalid Function Used";
+		break;
+	}
+	
+	
+	
+	return 0;
+}
