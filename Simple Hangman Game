@@ -1,0 +1,143 @@
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <time.h>
+
+using namespace std;
+
+void drawHangman(int hang) {
+    switch (hang) {
+    case 0:
+        cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+        cout << "=========" << endl;
+        break;
+    case 1:
+        cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O   |" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+        cout << "=========" << endl;
+        break;
+    case 2:
+        cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O   |" << endl;
+        cout << "  |   |" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+        cout << "=========" << endl;
+        break;
+    case 3:
+        cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O   |" << endl;
+        cout << " /|   |" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+        cout << "=========" << endl;
+        break;
+    case 4:
+        cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O   |" << endl;
+        cout << " /|\\  |" << endl;
+        cout << "      |" << endl;
+        cout << "      |" << endl;
+        break;
+    case 5:
+        cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O   |" << endl;
+        cout << " /|\\  |" << endl;
+        cout << " /    |" << endl;
+        cout << "      |" << endl;
+        break;
+    case 6:
+        cout << "  +---+" << endl;
+        cout << "  |   |" << endl;
+        cout << "  O   |" << endl;
+        cout << " /|\\  |" << endl;
+        cout << " / \\  |" << endl;
+        cout << "      |" << endl;
+        cout << "=========" << endl;
+        break;
+    default:
+        break;
+    }
+}
+
+
+void print(char arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+}
+
+int check(char input, char blanks[], string& words, int size) {
+    int count = 0;
+    for (int i = 0; i < size; i++) {
+        if (words[i] == input) {
+            blanks[i] = input;
+            words[i] = '*';
+            count++;
+        }
+    }
+    return(count);
+}
+
+int main() {
+    srand(time(0));
+    char blanks[30], woo, letters[27] = "abcdefghijklmnopqrstuvwxyz";
+    int count = 0, hang = 0, blank;
+    string words[5] = { "apple", "banana", "orange", "grape", "melon" };
+    string word = words[rand() % 5];
+    string final = word;
+    int size = word.length();
+
+    for (int i = 0; i < size; i++)
+        blanks[i] = '_';
+
+    drawHangman(hang);
+
+    while (hang < 6) {
+        print(blanks, size);
+        cout << endl;
+        cout << "Guess: The word is a fruit" << endl;
+        cout << "Enter Letter: ";
+        cin >> woo;
+        system("cls");
+
+
+        if (!(woo >= 'a' && woo <= 'z')) {
+            cout << "Invalid input. Please enter a lowercase letter." << endl;
+            continue;
+        }
+
+        blank = count;
+        count = count + check(woo, blanks, word, size);
+
+        if (count == blank)
+            hang++;
+
+        drawHangman(hang);
+        if (count == size) {
+            print(blanks, size);
+            break;
+        }
+    }
+
+    if (count == size)
+        cout << endl << "Congratulations, you won with " << 6 - hang << " tries remaining!";
+    else
+        cout << endl << "You lose, your word was: " << final;
+
+
+    return 0;
+}
